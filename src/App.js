@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./app/store";
-import Barcode from "./barcode";
+import routes from './app/routes'
 
 /**
  * Top Level component which instantiates the provider and the router.
@@ -23,7 +23,9 @@ class App extends Component {
     return (
       <Provider store={store}>
         <App.Router>
-          <Route exact path="/*" component={Barcode} />
+          <Fragment>
+            {routes.map(route => <Route key={route.path} {...route} />)}
+          </Fragment>
         </App.Router>
       </Provider>
     );

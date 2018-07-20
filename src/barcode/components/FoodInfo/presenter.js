@@ -3,6 +3,24 @@ import React from "react";
 import PropTypes from "prop-types";
 import Loader from "../../../app/shared/ui/Loader";
 
+export const IngredientDescription = ({ text }) => {
+  return text
+    .filter((s, i) => (s === "(" ? text[i + 1] !== "(" : s))
+    .map((chunk, chunkIndex) => {
+      return chunk.split(" ").map((word, wordIndex) => {
+        if (word.match(/_/g)) {
+          return (
+            <strong key={chunkIndex + wordIndex}>
+              {word.replace(/_/g, "")}{" "}
+            </strong>
+          );
+        } else {
+          return word === '(' ? word : word + " ";
+        }
+      });
+    });
+};
+
 const FoodInfo = ({ loading, error, food }) => {
   if (loading) {
     return (
@@ -36,22 +54,10 @@ const FoodInfo = ({ loading, error, food }) => {
         <h3 className="FoodInfo-title">{food.product_name}</h3>
         <img
           className="FoodInfo-image"
-          src={food.selected_images.front.display.en}
+          src={food.image_front_url}
           alt={food.product_name}
         />
-        <ul className="FoodInfo-list">
-          {food.ingredients
-            .filter(ingredient => !ingredient.rank)
-            .map(ingredient => (
-              <li
-                data-testid="ingredient"
-                className="FoodInfo-listItem"
-                key={ingredient.id}
-              >
-                {ingredient.text.toLowerCase()}
-              </li>
-            ))}
-        </ul>
+        <IngredientDescription text={food.ingredients_debug} />
       </div>
     </div>
   );
@@ -62,12 +68,8 @@ FoodInfo.propTypes = {
   error: PropTypes.bool,
   food: PropTypes.shape({
     product_name: PropTypes.string,
-    ingredients: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-        text: PropTypes.string
-      })
-    )
+    image_front_url: PropTypes.string,
+    ingredients_debug: PropTypes.arrayOf(PropTypes.string)
   })
 };
 

@@ -1,6 +1,112 @@
 import React from "react";
 import { shallow } from "enzyme";
-import FoodInfo from "../presenter";
+import FoodInfo, { IngredientDescription } from "../presenter";
+
+describe("IngredientDescription", () => {
+  it("should render a list of ingredients with allergies highlighted in bold", () => {
+    const data = [
+      "Fromage Frais ",
+      "(",
+      "(",
+      null,
+      null,
+      "from _Milk_)",
+      ",",
+      null,
+      null,
+      null,
+      " Sugar",
+      ",",
+      null,
+      null,
+      null,
+      " Cream ",
+      "(",
+      "(",
+      null,
+      null,
+      "from _Milk_)",
+      ",",
+      null,
+      null,
+      null,
+      " Strawberry Puree 2.5%",
+      ",",
+      null,
+      null,
+      null,
+      " Modified Maize Starch",
+      ",",
+      null,
+      null,
+      null,
+      " _Milk_ Mineral Concentrates",
+      ",",
+      null,
+      null,
+      null,
+      " Thickeners ",
+      "(",
+      "(",
+      null,
+      null,
+      "Guar Gum",
+      ",",
+      null,
+      null,
+      null,
+      " Locust Bean Gum",
+      ",",
+      null,
+      null,
+      null,
+      " Xanthan Gum)",
+      ",",
+      null,
+      null,
+      null,
+      " Acidity Regulators ",
+      "(",
+      "(",
+      null,
+      null,
+      "Citric Acid",
+      ",",
+      null,
+      null,
+      null,
+      " Sodium Citrate)",
+      ",",
+      null,
+      null,
+      null,
+      " Flavourings",
+      ",",
+      null,
+      null,
+      null,
+      " Colour ",
+      "(",
+      "(",
+      null,
+      null,
+      "Carmine",
+      ",",
+      null,
+      null,
+      null,
+      " Plain Caramel)",
+      ",",
+      null,
+      null,
+      null,
+      " Vitamin D"
+    ];
+
+    const wrapper = shallow(<div><IngredientDescription text={data} /></div>)
+    expect(wrapper.html()).toBe('<div>Fromage Frais  (from <strong>Milk) </strong>,  Sugar ,  Cream  (from <strong>Milk) </strong>,  Strawberry Puree 2.5% ,  Modified Maize Starch ,  <strong>Milk </strong>Mineral Concentrates ,  Thickeners  (Guar Gum ,  Locust Bean Gum ,  Xanthan Gum) ,  Acidity Regulators  (Citric Acid ,  Sodium Citrate) ,  Flavourings ,  Colour  (Carmine ,  Plain Caramel) ,  Vitamin D </div>')
+  });
+});
 
 describe("FoodInfo", () => {
   it('should render [data-testid="loader"] when props.loading', () => {
@@ -14,28 +120,5 @@ describe("FoodInfo", () => {
   it('should render [data-testid="placeholder"] by default', () => {
     const wrapper = shallow(<FoodInfo />);
     expect(wrapper.find('[data-testid="placeholder"]').exists()).toBe(true);
-  });
-  it('should render a data-testid="ingredient"] for every ingredient in food.ingredients if ingredient has no rank', () => {
-    const food = {
-      product_name: "Noodles",
-      selected_images: {
-        front: {
-          display: {
-            en: "/img.png"
-          }
-        }
-      },
-      ingredients: [
-        { id: 1, text: "A", rank: 1 },
-        { id: 2, text: "B", rank: 1 },
-        { id: 3, text: "C" },
-        { id: 4, text: "D" },
-        { id: 5, text: "E", rank: 1 }
-      ]
-    };
-    const wrapper = shallow(<FoodInfo food={food} />);
-    wrapper.find('[data-test="ingredient"]').forEach(ingredient => {
-      expect([3, 4]).toContain(ingredient.prop("key"));
-    });
   });
 });
