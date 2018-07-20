@@ -2,7 +2,7 @@ import Barcode from "../barcode";
 
 export default [
   {
-    path: '/',
+    path: "/",
     component: Barcode
   }
-]
+];

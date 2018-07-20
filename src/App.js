@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./app/store";
-import routes from './app/routes'
+import routes from "./app/routes";
 
 /**
  * Top Level component which instantiates the provider and the router.

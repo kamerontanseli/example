@@ -15,7 +15,7 @@ export const IngredientDescription = ({ text }) => {
             </strong>
           );
         } else {
-          return word === '(' ? word : word + " ";
+          return word === "(" ? word : word + " ";
         }
       });
     });

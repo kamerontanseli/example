@@ -103,8 +103,14 @@ describe("IngredientDescription", () => {
       " Vitamin D"
     ];
 
-    const wrapper = shallow(<div><IngredientDescription text={data} /></div>)
-    expect(wrapper.html()).toBe('<div>Fromage Frais  (from <strong>Milk) </strong>,  Sugar ,  Cream  (from <strong>Milk) </strong>,  Strawberry Puree 2.5% ,  Modified Maize Starch ,  <strong>Milk </strong>Mineral Concentrates ,  Thickeners  (Guar Gum ,  Locust Bean Gum ,  Xanthan Gum) ,  Acidity Regulators  (Citric Acid ,  Sodium Citrate) ,  Flavourings ,  Colour  (Carmine ,  Plain Caramel) ,  Vitamin D </div>')
+    const wrapper = shallow(
+      <div>
+        <IngredientDescription text={data} />
+      </div>
+    );
+    expect(wrapper.html()).toBe(
+      "<div>Fromage Frais  (from <strong>Milk) </strong>,  Sugar ,  Cream  (from <strong>Milk) </strong>,  Strawberry Puree 2.5% ,  Modified Maize Starch ,  <strong>Milk </strong>Mineral Concentrates ,  Thickeners  (Guar Gum ,  Locust Bean Gum ,  Xanthan Gum) ,  Acidity Regulators  (Citric Acid ,  Sodium Citrate) ,  Flavourings ,  Colour  (Carmine ,  Plain Caramel) ,  Vitamin D </div>"
+    );
   });
 });
 
