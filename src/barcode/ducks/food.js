@@ -1,11 +1,11 @@
-export const BARCODE_FOOD_ADD_FOOD = 'BARCODE_FOOD_ADD_FOOD';
+export const BARCODE_FOOD_ADD_FOOD = "BARCODE_FOOD_ADD_FOOD";
 
 export const barcodeFoodAddFood = food => ({
   type: BARCODE_FOOD_ADD_FOOD,
   payload: { food }
-})
+});
 
-export const INITIAL_STATE = {}
+export const INITIAL_STATE = {};
 
 const foodReducer = (state = INITIAL_STATE, action = {}) => {
   switch (action.type) {
@@ -13,10 +13,10 @@ const foodReducer = (state = INITIAL_STATE, action = {}) => {
       return {
         ...state,
         [action.payload.food.code]: action.payload.food
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default foodReducer
+export default foodReducer;

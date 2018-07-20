@@ -1,5 +1,5 @@
 import React from "react";
-import { Provider } from 'react-redux'
+import { Provider } from "react-redux";
 import { mount } from "enzyme";
 import { MemoryRouter } from "react-router-dom";
 import store from "../../app/store";
@@ -15,6 +15,6 @@ describe("Barcode", () => {
         </MemoryRouter>
       </Provider>
     );
-    expect(wrapper.find(BarcodeIndexPage).exists()).toBe(true)
+    expect(wrapper.find(BarcodeIndexPage).exists()).toBe(true);
   });
 });

@@ -1,7 +1,7 @@
 import "./FoodInfo.css";
 import React from "react";
 import PropTypes from "prop-types";
-import Loader from '../../../app/shared/ui/Loader'
+import Loader from "../../../app/shared/ui/Loader";
 
 const FoodInfo = ({ loading, error, food }) => {
   if (loading) {
@@ -43,7 +43,11 @@ const FoodInfo = ({ loading, error, food }) => {
           {food.ingredients
             .filter(ingredient => !ingredient.rank)
             .map(ingredient => (
-              <li data-testid="ingredient" className="FoodInfo-listItem" key={ingredient.id}>
+              <li
+                data-testid="ingredient"
+                className="FoodInfo-listItem"
+                key={ingredient.id}
+              >
                 {ingredient.text.toLowerCase()}
               </li>
             ))}

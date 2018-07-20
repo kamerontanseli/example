@@ -1,3 +1,3 @@
-import FoodInfoContainer from './container'
+import FoodInfoContainer from "./container";
 
-export default FoodInfoContainer
+export default FoodInfoContainer;

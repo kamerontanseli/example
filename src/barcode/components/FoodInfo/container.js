@@ -8,11 +8,12 @@ export const mapStateToProps = (state, ownProps) => {
   return {
     ...finder,
     food: food[finder.barcode]
-  }
-}
+  };
+};
 
-export const mapDispatchToProps = dispatch => ({
-  
-})
+export const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(FoodInfo)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FoodInfo);

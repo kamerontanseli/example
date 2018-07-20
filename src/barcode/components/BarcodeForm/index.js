@@ -1,3 +1,3 @@
-import BarcodeFormContainer from './container'
+import BarcodeFormContainer from "./container";
 
-export default BarcodeFormContainer
+export default BarcodeFormContainer;

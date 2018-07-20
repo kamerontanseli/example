@@ -1,4 +1,4 @@
-import { isResponseValid } from '../utils/finder'
+import { isResponseValid } from "../utils/finder";
 import { getBarcode } from "../api/barcode";
 import { barcodeFoodAddFood } from "./food";
 

@@ -17,11 +17,11 @@ describe("BarcodeFormContainer", () => {
   });
   it("should call e.preventDefault and props.onSubmit with the barcode", () => {
     const submitSpy = jest.fn();
-    const event = { preventDefault: jest.fn() }
+    const event = { preventDefault: jest.fn() };
     const wrapper = shallow(<BarcodeFormContainer onSubmit={submitSpy} />);
-    wrapper.instance().save(event)
-    expect(event.preventDefault).toHaveBeenCalled()
-    expect(submitSpy).toHaveBeenCalled()
+    wrapper.instance().save(event);
+    expect(event.preventDefault).toHaveBeenCalled();
+    expect(submitSpy).toHaveBeenCalled();
   });
   it("should render a BarcodeForm", () => {
     const wrapper = shallow(<BarcodeFormContainer onSubmit={() => {}} />);
@@ -43,19 +43,18 @@ describe("BarcodeFormContainer", () => {
   });
 });
 
-
-describe('mapStateToProps', () => {
-  it('should return ownProps', () => {
-    expect(mapStateToProps({a: 1}, { a: 4 })).toEqual({
+describe("mapStateToProps", () => {
+  it("should return ownProps", () => {
+    expect(mapStateToProps({ a: 1 }, { a: 4 })).toEqual({
       a: 4
-    })
-  })
-})
+    });
+  });
+});
 
-describe('mapDispatchToProps', () => {
-  it('should call dispatch when onSubmit is called', () => {
-    const dispatch = jest.fn()
-    mapDispatchToProps(dispatch).onSubmit()
-    expect(dispatch).toHaveBeenCalled()
-  })
-})
+describe("mapDispatchToProps", () => {
+  it("should call dispatch when onSubmit is called", () => {
+    const dispatch = jest.fn();
+    mapDispatchToProps(dispatch).onSubmit();
+    expect(dispatch).toHaveBeenCalled();
+  });
+});

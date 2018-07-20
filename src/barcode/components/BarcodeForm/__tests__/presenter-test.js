@@ -10,11 +10,11 @@ describe("BarcodeForm", () => {
     expect(spy).toHaveBeenCalled();
   });
   it('should call onChange when [data-testid="input"] is changed', () => {
-    const spy = jest.fn(v => expect(v).toBe('hello'));
+    const spy = jest.fn(v => expect(v).toBe("hello"));
     const wrapper = shallow(<BarcodeForm onChange={spy} onSubmit={() => {}} />);
     wrapper.find('[data-testid="input"]').simulate("change", {
       currentTarget: {
-        value: 'hello'
+        value: "hello"
       }
     });
     expect(spy).toHaveBeenCalled();

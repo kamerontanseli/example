@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchBarcode } from '../../ducks/finder'
+import { fetchBarcode } from "../../ducks/finder";
 import BarcodeForm from "./presenter";
 
 export class BarcodeFormContainer extends Component {

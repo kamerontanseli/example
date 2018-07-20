@@ -1,8 +1,13 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./app/store";
-import Barcode from './barcode'
+import Barcode from "./barcode";
 
 /**
  * Top Level component which instantiates the provider and the router.

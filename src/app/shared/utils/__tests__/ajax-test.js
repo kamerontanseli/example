@@ -20,17 +20,17 @@ describe("ajax", () => {
   it("should not throw when fetch. is successful", async () => {
     window.fetch = jest.fn(() => new Promise(r => r({ ok: true })));
     await ajax("/");
-    expect(window.fetch).toHaveBeenCalled()
+    expect(window.fetch).toHaveBeenCalled();
   });
   it("should throw when fetch. is unsuccessful", async () => {
     window.fetch = jest.fn(() => new Promise(r => r({ ok: false })));
     try {
-      await ajax("/")
-      expect(false).toBe(true)
+      await ajax("/");
+      expect(false).toBe(true);
     } catch (e) {
-      expect(true).toBe(true)
+      expect(true).toBe(true);
     }
-    expect(window.fetch).toHaveBeenCalled()
+    expect(window.fetch).toHaveBeenCalled();
   });
 });
 
@@ -43,10 +43,10 @@ describe("ajaxJSON", () => {
     window.fetch = oldFetch;
   });
   it("should call .json on the response when fetch is successful", async () => {
-    const spy = jest.fn()
+    const spy = jest.fn();
     window.fetch = jest.fn(() => new Promise(r => r({ ok: true, json: spy })));
-    await ajaxJSON('/')
-    expect(window.fetch).toHaveBeenCalled()
-    expect(spy).toHaveBeenCalled()
+    await ajaxJSON("/");
+    expect(window.fetch).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 });

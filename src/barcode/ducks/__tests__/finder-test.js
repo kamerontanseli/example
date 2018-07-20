@@ -126,7 +126,9 @@ describe("finderReducer", () => {
     });
   });
   it("should return loading as false and error as false and barcode as payload.id when BARCODE_FINDER_RECEIVE", () => {
-    expect(finderReducer({}, { type: BARCODE_FINDER_RECEIVE, payload: { id: 123 } })).toEqual({
+    expect(
+      finderReducer({}, { type: BARCODE_FINDER_RECEIVE, payload: { id: 123 } })
+    ).toEqual({
       loading: false,
       error: false,
       barcode: 123
