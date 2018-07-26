@@ -7,7 +7,7 @@ import Loader from "../../../app/shared/ui/Loader";
 const FoodInfo = ({ loading, error, food }) => {
   if (loading) {
     return (
-      <div className="container">
+      <div>
         <div className="FoodInfo">
           <Loader data-testid="loader" />
         </div>
@@ -15,7 +15,7 @@ const FoodInfo = ({ loading, error, food }) => {
     );
   } else if (error) {
     return (
-      <div className="container">
+      <div>
         <div className="FoodInfo">
           <Alert color="danger" data-testid="error">
             Product was not found
@@ -25,7 +25,7 @@ const FoodInfo = ({ loading, error, food }) => {
     );
   } else if (!food) {
     return (
-      <div className="container">
+      <div>
         <div className="FoodInfo">
           <Alert color="info" data-testid="placeholder">
             Take a picture of a barcode to find food
@@ -39,9 +39,13 @@ const FoodInfo = ({ loading, error, food }) => {
     <div>
       <div>
         <h3 style={{ marginBottom: 20 }}>{food.product_name}</h3>
-        {food.allergens && (
+        {food.allergens_tags.length > 0 && (
           <Alert color="danger">
-            <strong>Allergies: </strong> {food.allergens.split(",").join(", ")}
+            <strong>Allergies: </strong>{" "}
+            {food.allergens_tags
+              .filter(s => s.indexOf("en:") > -1)
+              .map(s => s.replace('en:', ''))
+              .join(", ")}
           </Alert>
         )}
 
@@ -51,9 +55,19 @@ const FoodInfo = ({ loading, error, food }) => {
             .filter(s => s !== "-" && s !== ":")
             .slice(1)
             .join(" ");
+
+          let color = "success";
+
+          if (sentence.indexOf("high") > -1) {
+            color = "danger";
+          } else if (sentence.indexOf("moderate") > -1) {
+            color = "warning";
+          }
+
           return (
-            <Alert color={sentence.indexOf("high") > -1 ? "danger" : "success"}>
-              {sentence}
+            <Alert key={index} color={color}>
+              {" "}
+              {sentence}{" "}
             </Alert>
           );
         })}
@@ -62,14 +76,12 @@ const FoodInfo = ({ loading, error, food }) => {
           <thead>
             <tr>
               <th>Ingredient</th>
-              <th>%</th>
             </tr>
           </thead>
           <tbody>
-            {food.ingredients.map(ingredient => (
-              <tr key={ingredient.id}>
+            {food.ingredients.map((ingredient, index) => (
+              <tr key={index}>
                 <td>{ingredient.text}</td>
-                <td>{ingredient.percent ? `${ingredient.percent}%` : ""}</td>
               </tr>
             ))}
           </tbody>
@@ -79,21 +91,25 @@ const FoodInfo = ({ loading, error, food }) => {
           <thead>
             <tr>
               <th>Type</th>
-              <th>Grams</th>
+              <th>Grams per 100g</th>
+              <th>Grams per serving</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Protein</td>
-              <td>{food.nutriments.proteins}g</td>
+              <td>{food.nutriments.proteins_100g || 'N/A'}</td>
+              <td>{food.nutriments.proteins_serving|| 'N/A'}</td>
             </tr>
             <tr>
               <td>Fat</td>
-              <td>{food.nutriments.fat}g</td>
+              <td>{food.nutriments.fat_100g || 'N/A'}</td>
+              <td>{food.nutriments.fat_serving || 'N/A'}</td>
             </tr>
             <tr>
               <td>Carbohydrates</td>
-              <td>{food.nutriments.carbohydrates}g</td>
+              <td>{food.nutriments.carbohydrates_100g || 'N/A'}</td>
+              <td>{food.nutriments.carbohydrates_serving || 'N/A'}</td>
             </tr>
           </tbody>
         </Table>
