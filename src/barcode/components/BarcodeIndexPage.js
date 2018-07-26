@@ -1,12 +1,13 @@
 import React from "react";
 import BarcodeForm from "./BarcodeForm";
 import FoodInfo from "./FoodInfo";
+import { Container, Row, Col } from 'reactstrap';
 
 const BarcodeIndexPage = () => (
-  <div>
+  <Container>
     <BarcodeForm />
     <FoodInfo />
-  </div>
+  </Container>
 );
 
 export default BarcodeIndexPage;

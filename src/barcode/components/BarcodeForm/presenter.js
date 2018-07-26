@@ -1,39 +1,26 @@
-import "./BarcodeForm.css";
 import React from "react";
 import PropTypes from "prop-types";
+import BarcodeScanner from '../BarcodeScanner'
 
-const BarcodeForm = ({ barcode, onChange, onSubmit }) => (
-  <form
-    data-testid="form"
-    action=""
-    className="BarcodeForm"
-    onSubmit={onSubmit}
-  >
-    <div className="container">
-      <input
-        data-testid="input"
-        required
-        placeholder="Search for a barcode (e.g: 0737628064502)"
-        type="text"
-        className="BarcodeForm-input"
-        value={barcode}
-        onChange={e => onChange(e.currentTarget.value)}
-      />
-      <button className="BarcodeForm-button" type="submit">
-        Find
-      </button>
-    </div>
-  </form>
+const BarcodeForm = ({ onChange, onError }) => (
+  <div className="container">
+    <BarcodeScanner
+      onResult={code => {
+        if (code) {
+          onChange(code);
+        } else {
+          onError()
+        }
+      }}
+    />
+  </div>
 );
 
 BarcodeForm.propTypes = {
-  barcode: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func
+  onError: PropTypes.func.isRequired
 };
 
-BarcodeForm.defaultProps = {
-  barcode: ""
-};
+BarcodeForm.defaultProps = {};
 
 export default BarcodeForm;

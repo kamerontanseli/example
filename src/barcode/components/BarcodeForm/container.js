@@ -1,25 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchBarcode } from "../../ducks/finder";
+import { fetchBarcode, barcodeFinderError } from "../../ducks/finder";
 import BarcodeForm from "./presenter";
 
 export class BarcodeFormContainer extends Component {
   static propTypes = {
-    onSubmit: PropTypes.func.isRequired
-  };
-  state = { barcode: "" };
-  setBarcode = barcode => this.setState({ barcode });
-  save = e => {
-    e.preventDefault();
-    this.props.onSubmit(this.state.barcode);
+    onSubmit: PropTypes.func.isRequired,
+    onError: PropTypes.func.isRequired
   };
   render() {
     return (
       <BarcodeForm
-        barcode={this.state.barcode}
-        onChange={b => this.setBarcode(b)}
-        onSubmit={e => this.save(e)}
+        onError={this.props.onError}
+        onChange={b => this.props.onSubmit(b)}
       />
     );
   }
@@ -30,7 +24,8 @@ export const mapStateToProps = (state, ownProps) => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  onSubmit: id => dispatch(fetchBarcode(id))
+  onSubmit: id => dispatch(fetchBarcode(id)),
+  onError: () => dispatch(barcodeFinderError())
 });
 
 export default connect(

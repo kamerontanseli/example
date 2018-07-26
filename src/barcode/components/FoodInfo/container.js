@@ -1,6 +1,4 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import FoodInfo from "./presenter";
 
 export const mapStateToProps = (state, ownProps) => {
